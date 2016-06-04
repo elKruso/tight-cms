@@ -52,7 +52,7 @@ interface DatabaseAccess extends Cernel
      *
      * @return void
      */
-    public function unsafe();
+    public function setUnsafe();
 
     /**
      * Executes the statement on the database

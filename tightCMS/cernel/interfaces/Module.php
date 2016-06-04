@@ -15,12 +15,12 @@
 namespace tightCMS\cernel\interfaces;
 
 use tightCMS\cernel\interfaces\Cernel;
-use tightCMS\cernel\TemplateEngine as TemplateEngineInterface;
-use tightCMS\cernel\DatabaseAccess as DatabaseAccessInterface;
-use tightCMS\cernel\LanguageSystem as LanguageSystemInterface;
-use tightCMS\cernel\ErrorLogging as ErrorLoggingInterface;
-use tightCMS\cernel\SessionManagement as SessionManagementInterface;
-use tightCMS\cernel\Request as RequestInterface;
+use tightCMS\cernel\interfaces\TemplateEngine as TemplateEngineInterface;
+use tightCMS\cernel\interfaces\DatabaseAccess as DatabaseAccessInterface;
+use tightCMS\cernel\interfaces\LanguageSystem as LanguageSystemInterface;
+use tightCMS\cernel\interfaces\ErrorLogging as ErrorLoggingInterface;
+use tightCMS\cernel\interfaces\SessionManagement as SessionManagementInterface;
+use tightCMS\cernel\interfaces\Request as RequestInterface;
 
 /**
  * interface Module

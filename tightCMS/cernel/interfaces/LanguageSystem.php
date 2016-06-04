@@ -17,7 +17,7 @@ namespace tightCMS\cernel\interfaces;
 use tightCMS\cernel\interfaces\Cernel;
 
 /**
- * interface LanguageSystem
+ * Interface LanguageSystem
  */
 interface LanguageSystem extends Cernel
 {
