@@ -1,12 +1,13 @@
 <?php
 /**
  * Abstract Cernel
+ * Implements basic functions for faster development
  *
- * @author    Daniel Kruse
- * @copyright 2016 Breitmeister Entertainment
- * @name      Cernel.php
- * @package   tightCMS/cernel/abstracts
- * @version   1.0.0
+ * @author      Daniel Kruse
+ * @copyright   2014 Breitmeister Entertainment
+ * @name        Cernel.php
+ * @package     tightCMS
+ * @version     1.0.0
  */
 
 namespace tightCMS\cernel\abstracts;
