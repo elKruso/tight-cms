@@ -18,6 +18,9 @@ use tightCMS\cernel\interfaces\TemplateEngine as TemplateEngineInterface;
 use tightCMS\cernel\interfaces\DatabaseAccess as DatabaseAccessInterface;
 use tightCMS\cernel\interfaces\FileAccess as FileAccessInterface;
 
+/**
+ * Abstract TemplateEngine
+ */
 abstract class TemplateEngine extends Cernel implements TemplateEngineInterface
 {
     /**
@@ -212,12 +215,11 @@ abstract class TemplateEngine extends Cernel implements TemplateEngineInterface
      *
      * @param string $fieldname Fieldname to be replaced
      * @param string $content   The content to set 
-     * @return boolean
+     * @return self
      */
     public function setContent($fieldname, $content)
     {
-        $status = $this->checkFieldname($fieldname);
-        if ($status) {
+        if ($this->checkFieldname($fieldname)) {
             if (! empty($this->templateArray[$fieldname])) {
                 // content was already set
                 unset($this->templateArray[$fieldname]);
@@ -228,18 +230,20 @@ abstract class TemplateEngine extends Cernel implements TemplateEngineInterface
             $this->templateArray[$fieldname] = $content;
         }
 
-        return $status;
+        return $this;
     }
 
     /**
      * Injects code to the end of the template
      * 
      * @param string $jsText
-     * @return void
+     * @return self
      */
     public function injectAtEnd($jsText)
     {
         $this->injectionAtEnd = $jsText;
+        
+        return $this;
     }
 
     /**
@@ -269,6 +273,8 @@ abstract class TemplateEngine extends Cernel implements TemplateEngineInterface
     
     /**
      * Resets the contents
+     * 
+     * @return self
      */
     public function resetData()
     {
@@ -294,13 +300,15 @@ TEMPLATE-DATA: ' . $this->templateName . '<br>
      * Reset the Templatedata
      *
      * @param string $name Name of the template
-     * @return void
+     * @return self
      */
     private function resetTemplate($name = '')
     {
         $this->templateName    = $name;
         $this->templateContent = '';
         $this->templateOutput  = '';
+                
+        return $this;
     }
 
     /**
@@ -400,12 +408,14 @@ TEMPLATE-DATA: ' . $this->templateName . '<br>
      * Adds an error
      *
      * @param string $error
-     * @return void
+     * @return self
      */
     protected function addError($error)
     {
         if (strlen($error) !== 0) {
             $this->error .= $error . '<br/>';
         }
+        
+        return $this;
     }
 }

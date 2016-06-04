@@ -6,7 +6,7 @@
  * TighCMS will only call these functions
  * 
  * @author    Daniel Kruse
- * @copyright 2014 Breitmeister Entertainment
+ * @copyright 2016 Breitmeister Entertainment
  * @name      FileAccess.php
  * @package   tightCMS/cernel/interface
  * @version   1.0.0
