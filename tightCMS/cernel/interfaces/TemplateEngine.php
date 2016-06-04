@@ -62,9 +62,10 @@ interface TemplateEngine extends Cernel
     /**
      * Returns the elements to replace
      *
+     * @param boolean $tags Return all placeholder inclusive tags
      * @return array List of placeholder
      */
-    public function getPlaceholder();
+    public function getPlaceholder($tags = false);
 
     /**
      * Sets values to replace "[[fieldname]]" with
@@ -76,6 +77,14 @@ interface TemplateEngine extends Cernel
     public function setContent($fieldname, $content);
 
     /**
+     * Injects code to the end of the template
+     * 
+     * @param string $jsText
+     * @return void
+     */
+    public function injectAtEnd($jsText);
+
+    /**
      * Renders the output
      *
      * @return string Rendered template
@@ -84,11 +93,14 @@ interface TemplateEngine extends Cernel
 
     /**
      * Resets the contents
+     * 
+     * @return self
      */
     public function resetData();
 
     /**
      * Dumps the full list of placeholders and content to the screen
+     * 
      * @return array
      */
     public function dumpPlaceholder();

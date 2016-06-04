@@ -27,7 +27,7 @@ interface MailSystem extends Cernel
      * @param string $username Username
      * @param string $password Password
      * @param string $server   Server to send from
-     * @return boolean
+     * @return boolean|string Success or error message
      */
     public function setAuth($username, $password, $server);
 
@@ -36,7 +36,7 @@ interface MailSystem extends Cernel
      *
      * @param string $from     Sender mailadress
      * @param string $fromName Sender name
-     * @return boolean
+     * @return boolean|string Success or error message
      */
     public function setSender($from, $fromName);
 
@@ -45,18 +45,18 @@ interface MailSystem extends Cernel
      *
      * @param string $sendCc     Adress of the CC
      * @param string $sendCcName Name of the CC
-     * @return boolean
+     * @return boolean|string Success or error message
      */
     public function setCc($sendCc, $sendCcName);
 
     /**
      * Sends the content for the receiver
      *
-     * @param string $sendTo     Emailadress of the receiver
-     * @param string $sendToName Name of the receiver
-     * @param string $title      Title of the mail
-     * @param string $content    Content of the mail
-     * @return boolean Senden success?
+     * @param string|array $sendTo     Emailadress of the receiver
+     * @param string|array $sendToName Name of the receiver
+     * @param string       $title      Title of the mail
+     * @param string       $content    Content of the mail
+     * @return boolean success?
      */
     public function sendMail($sendTo, $sendToName, $title, $content);
 }
