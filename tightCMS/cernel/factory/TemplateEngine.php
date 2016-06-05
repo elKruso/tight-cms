@@ -14,6 +14,8 @@
 namespace tightCMS\cernel\factory;
 
 use tightCMS\cernel\interfaces\TemplateEngine as TemplateEngineInterface;
+use tightCMS\cernel\interfaces\DatabaseAccess as DatabaseAccessInterface;
+use tightCMS\cernel\interfaces\FileAccess as FileAccessInterface;
 use tightCMS\cernel\TemplateEngineRegEx;
 
 /**
@@ -26,8 +28,13 @@ class TemplateEngine extends TemplateEngineRegEx implements TemplateEngineInterf
      * 
      * @return TemplateEngineInterface
      */
-    public static function createRegEx()
-    {
-        return new TemplateEngineRegEx();
+    public static function createRegEx(
+        DatabaseAccessInterface $databaseAccess,
+        FileAccessInterface $fileAccess
+    ) {
+        return new TemplateEngineRegEx(
+            $databaseAccess,
+            $fileAccess
+        );
     }
 }

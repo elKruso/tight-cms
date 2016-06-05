@@ -8,7 +8,7 @@
  * @author    Daniel Kruse
  * @copyright 2016 Breitmeister Entertainment
  * @name      Module.php
- * @package   tightCMS
+ * @package   tightCMS/cernel/abstracts
  * @version   1.0.0
  */
 
@@ -228,7 +228,7 @@ abstract class Module extends ModuleBasic implements ModuleInterface
     /**
      * Deinstalls module
      *
-     * @return void
+     * @return boolean Success?
      */
     public function superUninstall()
     {
@@ -249,7 +249,7 @@ abstract class Module extends ModuleBasic implements ModuleInterface
     /**
      * Switches the module active/inactive
      *
-     * @return void
+     * @return boolean Success?
      */
     public final function switchModuleActive()
     {
