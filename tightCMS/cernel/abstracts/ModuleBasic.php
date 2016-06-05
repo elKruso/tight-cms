@@ -23,17 +23,15 @@ use tightCMS\cernel\interfaces\DatabaseAccess as DatabaseAccessInterface;
 use tightCMS\cernel\interfaces\LanguageSystem as LanguageSystemInterface;
 use tightCMS\cernel\interfaces\ErrorLogging as ErrorLoggingInterface;
 use tightCMS\cernel\interfaces\SessionManagement as SessionManagementInterface;
-use tightCMS\cernel\interfaces\LayoutTools as LayoutToolsInterface;
 use tightCMS\cernel\interfaces\Request as RequestInterface;
 
-use tightCMS\cernel\TemplateEngine as TemplateEngineClass;
+use tightCMS\cernel\factory\TemplateEngine as TemplateEngineFactory;
 use tightCMS\cernel\FileAccess;
 use tightCMS\cernel\MailSystem;
-use tightCMS\cernel\DatabaseAccess as DatabaseAccessClass;
+use tightCMS\cernel\factory\DatabaseAccess as DatabaseAccessFactory;
 use tightCMS\cernel\LanguageSystem;
 use tightCMS\cernel\ErrorLogging;
 use tightCMS\cernel\SessionManagement;
-use tightCMS\cernel\LayoutTools;
 use tightCMS\cernel\Request;
 
 /**
@@ -82,12 +80,6 @@ abstract class ModuleBasic implements ModuleInterface
      * @var SessionManagement
      */
     protected $sessionManagement;
-
-    /**
-     * Layout Tools
-     * @var LayoutTools
-     */
-    protected $design;
 
     /**
      * Request
@@ -155,9 +147,9 @@ abstract class ModuleBasic implements ModuleInterface
     }
 
     /**
-     * gibt die Versionsnummer zurück + Copyright
+     * Returns the versions + copyright
      *
-     * @return string "Modulname V1.0 - &copy; Jahr - Autor"
+     * @return string "Modulename V1.0 - &copy; Year - Author"
      */
     public function getVersion()
     {
@@ -165,22 +157,25 @@ abstract class ModuleBasic implements ModuleInterface
     }
 
     /**
-     *
+     * Returns Template Engine
+     * 
      * @return TemplateEngineClass
      */
     public function getTemplateEngine()
     {
         if (null === $this->templateEngine) {
-            $this->templateEngine = new TemplateEngineClass(
+            $this->templateEngine = TemplateEngineFactory::createRegEx(
                 $this->getSqlEngine(),
                 $this->getFileAccess()
             );
         }
+        
         return $this->templateEngine;
     }
 
     /**
-     *
+     * Returns file access
+     * 
      * @return FileAccess
      */
     public function getFileAccess()
@@ -188,11 +183,13 @@ abstract class ModuleBasic implements ModuleInterface
         if (null === $this->fileAccess) {
             $this->fileAccess = new FileAccess();
         }
+        
         return $this->fileAccess;
     }
 
     /**
-     *
+     * Returns mail system
+     * 
      * @return MailSystem
      */
     public function getMailSystem()
@@ -200,23 +197,27 @@ abstract class ModuleBasic implements ModuleInterface
         if (null === $this->mailSystem) {
             $this->mailSystem = new MailSystem();
         }
+        
         return $this->mailSystem;
     }
 
     /**
-     *
+     * Returns database access
+     * 
      * @return DatabaseAccess
      */
     public function getSqlEngine()
     {
         if (null === $this->sqlEngine) {
-            $this->sqlEngine = new DatabaseAccessClass();
+            $this->sqlEngine = DatabaseAccessFactory::createPdo();
         }
+        
         return $this->sqlEngine;
     }
 
     /**
-     *
+     * Returns language system
+     * 
      * @return LanguageSystem
      */
     public function getLanguageSystem()
@@ -224,11 +225,13 @@ abstract class ModuleBasic implements ModuleInterface
         if (null === $this->languageSystem) {
             $this->languageSystem = new LanguageSystem($this->getSqlEngine());
         }
+        
         return $this->languageSystem;
     }
 
     /**
-     *
+     * Returns error logging
+     * 
      * @return ErrorLogging
      */
     public function getErrorLogging()
@@ -236,11 +239,13 @@ abstract class ModuleBasic implements ModuleInterface
         if (null === $this->errorLogging) {
             $this->errorLogging = new ErrorLogging($this->getFileAccess());
         }
+        
         return $this->errorLogging;
     }
 
     /**
-     *
+     * Returns session management
+     * 
      * @return SessionManagement
      */
     public function getSessionManagement()
@@ -248,23 +253,13 @@ abstract class ModuleBasic implements ModuleInterface
         if (null === $this->sessionManagement) {
             $this->sessionManagement = new SessionManagement();
         }
+        
         return $this->sessionManagement;
     }
 
     /**
-     *
-     * @return LayoutTools
-     */
-    public function getDesign()
-    {
-        if (null === $this->design) {
-            $this->design = new LayoutTools();
-        }
-        return $this->design;
-    }
-
-    /**
-     *
+     * Returns request
+     * 
      * @return Request
      */
     public function getRequest()
@@ -272,13 +267,15 @@ abstract class ModuleBasic implements ModuleInterface
         if (null === $this->request) {
             $this->request = new Request();
         }
+        
         return $this->request;
     }
 
     /**
-     *
+     * Sets template engine
+     * 
      * @param TemplateEngineInterface $templateEngine
-     * @return \tightCMS\cernel\abstracts\Module
+     * @return self
      */
     public function setTemplateEngine(TemplateEngineInterface $templateEngine)
     {
@@ -288,9 +285,10 @@ abstract class ModuleBasic implements ModuleInterface
     }
 
     /**
+     * Sets file access
      *
      * @param FileAccessInterface $fileAccess
-     * @return \tightCMS\cernel\abstracts\Module
+     * @return self 
      */
     public function setFileAccess(FileAccessInterface $fileAccess)
     {
@@ -300,9 +298,10 @@ abstract class ModuleBasic implements ModuleInterface
     }
 
     /**
-     *
+     * Sets mail system
+     * 
      * @param MailSystemInterface $mailSystem
-     * @return \tightCMS\cernel\abstracts\Module
+     * @return self
      */
     public function setMailSystem(MailSystemInterface $mailSystem)
     {
@@ -312,9 +311,10 @@ abstract class ModuleBasic implements ModuleInterface
     }
 
     /**
-     *
+     * Set sql engine
+     * 
      * @param DatabaseAccessInterface $sqlEngine
-     * @return \tightCMS\cernel\abstracts\Module
+     * @return self
      */
     public function setSqlEngine(DatabaseAccessInterface $sqlEngine)
     {
@@ -324,9 +324,10 @@ abstract class ModuleBasic implements ModuleInterface
     }
 
     /**
+     * Set language system
      *
      * @param LanguageSystemInterface $languageSystem
-     * @return \tightCMS\cernel\abstracts\Module
+     * @return self
      */
     public function setLanguageSystem(LanguageSystemInterface $languageSystem)
     {
@@ -336,9 +337,10 @@ abstract class ModuleBasic implements ModuleInterface
     }
 
     /**
-     *
+     * Set error logging
+     * 
      * @param ErrorLoggingInterface $errorLogging
-     * @return \tightCMS\cernel\abstracts\Module
+     * @return self
      */
     public function setErrorLogging(ErrorLoggingInterface $errorLogging)
     {
@@ -348,9 +350,10 @@ abstract class ModuleBasic implements ModuleInterface
     }
 
     /**
-     *
+     * Set session management
+     * 
      * @param SessionManagementInterface $sessionManagement
-     * @return \tightCMS\cernel\abstracts\Module
+     * @return self
      */
     public function setSessionManagement(SessionManagementInterface $sessionManagement)
     {
@@ -360,21 +363,10 @@ abstract class ModuleBasic implements ModuleInterface
     }
 
     /**
-     *
-     * @param LayoutToolsInterface $design
-     * @return \tightCMS\cernel\abstracts\Module
-     */
-    public function setDesign(LayoutToolsInterface $design)
-    {
-        $this->design = $design;
-
-        return $this;
-    }
-
-    /**
-     *
+     * Sets request
+     * 
      * @param RequestInterface $request
-     * @return \tightCMS\cernel\abstracts\Module
+     * @return self
      */
     public function setRequest(RequestInterface $request)
     {

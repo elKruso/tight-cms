@@ -250,20 +250,20 @@ class Main
                 );
             }
         } else {
-            $meldung = $this->templateEngine->ladeTemplate(
+            $meldung = $this->templateEngine->loadTemplate(
                 TIGHT_TEMPLATES . $this->baseTemplate
             );
         }
         $this->showErrorAndExit($meldung, 'TemplateEngine');
         // Modulliste laden, und AJAX-Laden erstellen (Div und Javascript):
         $this->errorLogging->writeLog(0, 'Start Work', 'Preparing output');
-        $this->templateEngine->setzeContent(
+        $this->templateEngine->setContent(
             'AJAXed', $this->writeOutput(
-                $this->templateEngine->gibPlatzhalter()
+                $this->templateEngine->getPlaceholder()
             )
         );
         // Ausgabe auf die Webseite:
-        echo $this->templateEngine->ausgeben();
+        echo $this->templateEngine->render();
 
         return true;
     }
@@ -373,7 +373,7 @@ class Main
             $templiste = $this->getModuleParameter($module);
             if (!empty($templiste['modul'])) {
                 // MODUL gefunden:
-                $this->templateEngine->setzeContent(
+                $this->templateEngine->setContent(
                     $module, $templiste['divcontainer']
                 );
                 // Modul lesen:

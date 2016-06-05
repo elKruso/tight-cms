@@ -75,11 +75,11 @@ class TemplateEngineRegEx
             return false;
         }
         $template = $this->replaceTag(
-            $this->gibPlatzhalter(false), 
+            $this->getPlaceholder(false), 
             $this->templateContent
         );
         $templateStep = $this->replaceTag(
-            $this->gibPlatzhalter(true), 
+            $this->getPlaceholder(true), 
             $template
         );
         $this->templateOutput = $this->replaceTag(
