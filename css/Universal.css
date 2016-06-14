@@ -1,0 +1,35 @@
+/*
+    Created on : 18.11.2015, 16:55:24
+    Author     : Daniel Kruse <kruse@breitmeister.de>
+*/
+
+.ajax-indicator {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    top: 0px;
+    right: 0px;
+}
+
+.pagewrapper {
+    
+}
+
+.modulholder > .container {
+	width: 100%;
+}
+
+.errorSystem {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #F00;
+}
+
+.image_link {
+	cursor: pointer;
+}
+
+a {
+	cursor: pointer;
+	text-decoration: underline;
+}
