@@ -11,17 +11,12 @@
         <meta name="robots" content="index,follow">
         <meta name="revisit-after" content="7 Days">
 
-        <meta name="keywords" content="[[tag: keywords]]">
-        <meta name="description" content="[[tag: description]]">
-        <meta name="generator" content="tightCMS">
-        <meta name="author" content="Breitmeister Entertainment">
-
         <link rel="shortcut icon" href="[[tag: favicon]]">
         <link rel="icon" href="[[tag: favicon]]">
 
+        <link type="text/css" rel="stylesheet" href="css/Universal.css">
+        <link type="text/css" rel="stylesheet" href="css/Frontend.css">
         [[tag: css]]
-        <link rel="stylesheet" type="text/css" href="css/Universal.css">
-        <link rel="stylesheet" type="text/css" href="css/Frontend.css">
 
         <script src="externals/components/jquery/jquery.min.js" type="text/javascript"></script>
         <script type="text/javascript" src="gms/tightGMS.js"></script>
@@ -29,30 +24,31 @@
 
     </head>
     <body>
+        <div class="ajax-indicator"></div>
         <div class="container pagewrapper">
             <div class="row">
-                <header class="col-md-12 col-sm-12 text-center adminheader">
+                <header class="col-md-12 col-sm-12 text-center frontend-header">
                     <h1>tightCMS</h1>
                 </header>
             </div>
             <div class="row">
-                <div class="col-md-2 col-sm-12 left">
-                    [[modul: LoginModul]]
+                <nav class="col-md-2 col-sm-12 left navigation">
+                    [[modul: LoginModule]]
                     <div class="spacer"></div>
                     [[modul: Navigation]]
-                </div>
-                <div class="col-md-10 col-sm-12 right">
+                </nav>
+                <section class="col-md-10 col-sm-12 right mainstage">
                     [[modul: Pages]]
-                </div>
+                </section>
             </div>
             <div class="row">
-                <footer class="col-md-12 col-sm-12 text-center adminfooter">
-                    <br>
-                    tightCMS v0.9 - &copy; 2014 <a href="http://www.breitmeister.de" target="_blank">Breitmeister Entertainment</a>
+                <footer class="col-md-12 col-sm-12 text-center frontend-footer">
+                    tightCMS v1.0 - &copy; 2016 <a href="http://www.breitmeister.de" target="_blank">Breitmeister Entertainment</a>
                 </footer>
             </div>
         </div>
-        <div class="indicator"></div>
+        
         [[AJAXed]]
+        
     </body>
 </html>
